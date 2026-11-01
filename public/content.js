@@ -234,10 +234,6 @@ window.PORTFOLIO_DATA = {
         {
           "src": "assets/images/infobip-team.jpg",
           "caption": "The winning team with the trophy at Curtin University Dubai"
-        },
-        {
-          "src": "assets/images/infobip-trophy.jpg",
-          "caption": "1st Place, Engagex Hackathon on Generative AI in CX 2025, awarded for pioneering innovation in AI solutions"
         }
       ],
       "stack": [
@@ -1417,10 +1413,6 @@ window.PORTFOLIO_DATA = {
       {
         "src": "assets/images/infobip-team.jpg",
         "alt": "The winning team holding the trophy at Curtin University Dubai"
-      },
-      {
-        "src": "assets/images/infobip-trophy.jpg",
-        "alt": "Glass trophy reading Engagex Hackathon on Generative AI in CX 2025, 1st Place, awarded for pioneering innovation in AI solutions"
       }
     ],
     "project": "campus-whatsapp-assistant"

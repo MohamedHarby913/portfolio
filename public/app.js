@@ -267,7 +267,7 @@
   });
   $('#open-degree')?.addEventListener('click', () => {
     const degree = data.degree || {};
-    openMedia({kicker:'EDUCATION / SEP 2023 — JUN 2026', title:degree.title || 'BSc Cybersecurity', sub:[degree.issuer || 'Curtin University Dubai', degree.honours, 'GPA 3.5 / 4.0', degree.conferred && 'Conferred ' + degree.conferred].filter(Boolean).join(' · '), file:degree.file, verify:degree.verify});
+    openMedia({kicker:'EDUCATION / SEP 2023 — JUN 2026', title:degree.title || 'BSc Cybersecurity', sub:[degree.issuer || 'Curtin University Dubai', degree.honours, 'GPA 3.6 / 4.0', degree.conferred && 'Conferred ' + degree.conferred].filter(Boolean).join(' · '), file:degree.file, verify:degree.verify});
   });
   $('#highlight-win')?.addEventListener('click', event => {
     const button = event.target.closest('[data-win-image]');

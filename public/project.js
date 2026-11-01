@@ -43,7 +43,7 @@
 
   if (index < 0) {
     document.title = 'Project not found — Mohamed Harby';
-    main.innerHTML = `<section class="pp-missing"><span class="mono accent">404 / PROJECT NOT FOUND</span><h1>Nothing here.</h1><p class="muted">That project link doesn't exist. It may have been renamed.</p><a class="pill-button outline-button" href="index.html#work">Browse all work <span>↗</span></a></section>`;
+    main.innerHTML = `<section class="pp-missing"><span class="mono accent">404 / PROJECT NOT FOUND</span><h1>Nothing here.</h1><p class="muted">That project link doesn't exist. It may have been renamed.</p><a class="pill-button outline-button" href="index.html#work">Browse all projects <span>↗</span></a></section>`;
     applyMotion();
     return;
   }
@@ -115,12 +115,12 @@
   ].filter(([, value]) => value);
 
   const title = isFeatured
-    ? `<h1 class="pp-title is-brand">cybee<span>+</span></h1>`
+    ? `<h1 class="pp-title is-brand">Cybee<span>+</span></h1>`
     : `<h1 class="pp-title">${escape(project.title)}</h1>`;
 
   main.innerHTML = `
     <section class="pp-hero" aria-labelledby="pp-title">
-      <div class="pp-kicker"><span class="mono"><a class="pp-back" href="index.html#work"><span aria-hidden="true">←</span> All work</a></span><span class="mono">${escape(number)} · ${escape((project.labels || []).join(' / '))}</span></div>
+      <div class="pp-kicker"><span class="mono"><a class="pp-back" href="index.html#work"><span aria-hidden="true">←</span> All projects</a></span><span class="mono">${escape(number)} · ${escape((project.labels || []).join(' / '))}</span></div>
       ${title.replace('<h1 ', '<h1 id="pp-title" ')}
       <p class="pp-tagline">${escape(project.tagline || project.summary)}</p>
       <dl class="pp-meta">${meta.map(([label, value]) => `<div><dt>${label}</dt><dd>${escape(value)}</dd></div>`).join('')}</dl>
@@ -137,7 +137,7 @@
         ${sections.map(renderSection).join('')}
       </div>
     </div>
-    <nav class="pp-next" aria-label="Next project"><div><span class="mono">NEXT ${next === data.featured ? 'UP / FLAGSHIP' : 'PROJECT'}</span><a class="next-link" href="project.html?p=${encodeURIComponent(next.slug)}">${escape(next.title)} <span aria-hidden="true">↗</span></a></div><a class="text-link" href="index.html#work">Back to all work <span>↙</span></a></nav>`;
+    <nav class="pp-next" aria-label="Next project"><div><span class="mono">NEXT ${next === data.featured ? 'UP / FLAGSHIP' : 'PROJECT'}</span><a class="next-link" href="project.html?p=${encodeURIComponent(next.slug)}">${escape(next.title)} <span aria-hidden="true">↗</span></a></div><a class="text-link" href="index.html#work">Back to all projects <span>↙</span></a></nav>`;
 
   window.ProjectArt.fit(main);
   /* Reveal, progress, table of contents */
