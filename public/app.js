@@ -170,7 +170,7 @@
       const index = data.projects.indexOf(project);
       const art = project.art ?? 7;
       const href = projectUrl(project.slug);
-      return `<article class="project-card"><a class="project-preview" href="${href}" data-art="${art}" data-cursor="Open" aria-label="Open project: ${escape(project.title)}"><span class="preview-topline"><span>${String(index+1).padStart(2,'0')} / ${escape(project.labels[0] || 'PROJECT')}</span><span>READ THE CASE STUDY</span></span>${artMarkup(art)}<span class="preview-open" aria-hidden="true">↗</span></a><div class="project-caption"><div><h4><a href="${href}" tabindex="-1">${escape(project.title)}</a></h4><p>${project.labels.map(escape).join(' / ')}</p></div><span aria-hidden="true">↗</span></div></article>`;
+      return `<article class="project-card"><a class="project-preview" href="${href}" data-art="${art}" data-cursor="Open" aria-label="Open project: ${escape(project.title)}"><span class="preview-topline"><span>${String(index+1).padStart(2,'0')} / ${escape(project.labels[0] || 'PROJECT')}</span><span>READ THE CASE STUDY</span></span>${artMarkup(art)}<span class="preview-open" aria-hidden="true">↗︎</span></a><div class="project-caption"><div><h4><a href="${href}" tabindex="-1">${escape(project.title)}</a></h4><p>${project.labels.map(escape).join(' / ')}</p></div><span aria-hidden="true">↗︎</span></div></article>`;
     }).join('');
     $('#project-count').textContent = `Showing ${visible.length} of ${matches.length} projects`;
     const show = $('#show-projects');
@@ -207,10 +207,10 @@
   });
 
   $('#timeline').innerHTML = data.experience.map((entry,index) => `<details class="experience-entry reveal" ${entry.open?'open':''}><summary><span class="mono">${escape(entry.date)}</span><h3>${escape(entry.title)}</h3><span class="experience-org">${escape(entry.organization)}</span><span class="experience-toggle" aria-hidden="true">+</span></summary><div class="experience-body">${entry.description?`<p>${escape(entry.description)}</p>`:''}${entry.details.length?`<ul>${entry.details.map(detail=>`<li>${escape(detail)}</li>`).join('')}</ul>`:''}</div></details>`).join('');
-  $('#cert-list').innerHTML = data.certifications.map((cert,index) => `<article class="cert-card reveal ${cert.inProgress?'in-progress':'is-clickable'}">${cert.inProgress?'':`<button class="card-open" type="button" data-cert="${index}" aria-label="View certificate: ${escape(cert.title)}"></button>`}<span class="cert-symbol" aria-hidden="true">${cert.inProgress?'◌':'✳'}</span><div><h4>${escape(cert.title)}</h4><p>${escape(cert.issuer)}</p></div>${cert.inProgress?'':'<span class="cert-view" aria-hidden="true">↗</span>'}</article>`).join('');
+  $('#cert-list').innerHTML = data.certifications.map((cert,index) => `<article class="cert-card reveal ${cert.inProgress?'in-progress':'is-clickable'}">${cert.inProgress?'':`<button class="card-open" type="button" data-cert="${index}" aria-label="View certificate: ${escape(cert.title)}"></button>`}<span class="cert-symbol" aria-hidden="true">${cert.inProgress?'◌':'✳︎'}</span><div><h4>${escape(cert.title)}</h4><p>${escape(cert.issuer)}</p></div>${cert.inProgress?'':'<span class="cert-view" aria-hidden="true">↗︎</span>'}</article>`).join('');
   $('#skills-grid').innerHTML = data.skills.map((group,index)=>`<div class="skill-group reveal"><h4>${escape(group.title)}<span>[0${index+1}]</span></h4><div class="skill-tags">${group.items.map(item=>`<span>${escape(item)}</span>`).join('')}</div></div>`).join('');
   const win = data.highlight;
-  if (win) $('#highlight-win').innerHTML = `<article class="win-card reveal"><div class="win-photos">${win.images.map((image,index)=>`<button class="win-photo" type="button" data-win-image="${index}" data-cursor="View" aria-label="Enlarge photo: ${escape(image.alt)}"><img src="${escape(image.src)}" alt="${escape(image.alt)}" loading="lazy"></button>`).join('')}</div><div class="win-copy"><span class="mono win-label"><i class="status-dot"></i> ${escape(win.label)}</span><h4>${escape(win.title)}</h4><span class="win-org mono">${escape(win.organizers)}</span><p>${escape(win.description)}</p>${win.project ? `<a class="text-link win-link" href="project.html?p=${encodeURIComponent(win.project)}">See what we built <span>↗</span></a>` : ''}</div></article>`;
+  if (win) $('#highlight-win').innerHTML = `<article class="win-card reveal"><div class="win-photos">${win.images.map((image,index)=>`<button class="win-photo" type="button" data-win-image="${index}" data-cursor="View" aria-label="Enlarge photo: ${escape(image.alt)}"><img src="${escape(image.src)}" alt="${escape(image.alt)}" loading="lazy"></button>`).join('')}</div><div class="win-copy"><span class="mono win-label"><i class="status-dot"></i> ${escape(win.label)}</span><h4>${escape(win.title)}</h4><span class="win-org mono">${escape(win.organizers)}</span><p>${escape(win.description)}</p>${win.project ? `<a class="text-link win-link" href="project.html?p=${encodeURIComponent(win.project)}">See what we built <span>↗︎</span></a>` : ''}</div></article>`;
   $('#recognition-list').innerHTML = data.awards.map(award=>`<article class="recognition-item"><span class="mono">${escape(award.label)}</span><div><h4>${escape(award.title)}</h4><p>${escape(award.description)}</p></div></article>`).join('');
   observeReveals();
   updateScroll();
@@ -229,10 +229,10 @@
       frame.innerHTML = `<div class="media-missing"><span class="mono">PREVIEW UNAVAILABLE</span><p>This document can't be shown right now.${verify ? ' You can still verify it with the issuer.' : ' Get in touch and I\'ll send a copy.'}</p></div>`;
       $('[data-full]', actions)?.remove();
     };
-    actions.innerHTML = `${file ? `<a class="text-link" data-full href="${escape(file)}" target="_blank" rel="noopener">Open full size <span>↗</span></a>` : ''}${verify ? `<a class="text-link" href="${escape(verify)}" target="_blank" rel="noopener noreferrer">Verify with issuer <span>↗</span></a>` : ''}`;
+    actions.innerHTML = `${file ? `<a class="text-link" data-full href="${escape(file)}" target="_blank" rel="noopener">Open full size <span>↗︎</span></a>` : ''}${verify ? `<a class="text-link" href="${escape(verify)}" target="_blank" rel="noopener noreferrer">Verify with issuer <span>↗︎</span></a>` : ''}`;
     if (Array.isArray(file)) {
       const roman = ['I','II','III','IV'];
-      actions.innerHTML = file.map((src, i) => `<a class="text-link" href="${escape(src)}" target="_blank" rel="noopener">Open ${roman[i]} <span>↗</span></a>`).join('') + [verify, verify2].filter(Boolean).map((url, i) => `<a class="text-link" href="${escape(url)}" target="_blank" rel="noopener noreferrer">Verify ${roman[i]} <span>↗</span></a>`).join('');
+      actions.innerHTML = file.map((src, i) => `<a class="text-link" href="${escape(src)}" target="_blank" rel="noopener">Open ${roman[i]} <span>↗︎</span></a>`).join('') + [verify, verify2].filter(Boolean).map((url, i) => `<a class="text-link" href="${escape(url)}" target="_blank" rel="noopener noreferrer">Verify ${roman[i]} <span>↗︎</span></a>`).join('');
       frame.classList.add('is-stack');
       frame.innerHTML = file.map((src, i) => `<img src="${escape(src)}" alt="${escape(title)}, part ${roman[i]}" loading="lazy">`).join('');
     }
@@ -304,7 +304,7 @@
     function copied() {
       toast('Email address copied. Let’s start a conversation.');
       $('#copy-email').innerHTML='Copied <span>✓</span>';
-      setTimeout(()=>$('#copy-email').innerHTML='Copy email <span>⧉</span>',2500);
+      setTimeout(()=>$('#copy-email').innerHTML='Copy email <span>⧉︎</span>',2500);
     }
     try {
       await navigator.clipboard.writeText(email);

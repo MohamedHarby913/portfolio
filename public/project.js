@@ -43,7 +43,7 @@
 
   if (index < 0) {
     document.title = 'Project not found — Mohamed Harby';
-    main.innerHTML = `<section class="pp-missing"><span class="mono accent">404 / PROJECT NOT FOUND</span><h1>Nothing here.</h1><p class="muted">That project link doesn't exist. It may have been renamed.</p><a class="pill-button outline-button" href="index.html#work">Browse all projects <span>↗</span></a></section>`;
+    main.innerHTML = `<section class="pp-missing"><span class="mono accent">404 / PROJECT NOT FOUND</span><h1>Nothing here.</h1><p class="muted">That project link doesn't exist. It may have been renamed.</p><a class="pill-button outline-button" href="index.html#work">Browse all projects <span>↗︎</span></a></section>`;
     applyMotion();
     return;
   }
@@ -82,7 +82,7 @@
       return `<section class="pp-section reveal" id="${section.id}">${head}<p>The model is never the final word. Every result passes three gates before an analyst relies on it.</p><div class="case-pipeline">${project.pipeline.map(step => `<div><span class="mono">${escape(step.step)}</span><h4>${escape(step.title)}</h4><p>${escape(step.text)}</p></div>`).join('')}</div></section>`;
     }
     if (section.kind === 'figures') {
-      return `<section class="pp-section reveal" id="${section.id}">${head}<div class="pp-figures">${project.figures.map(figure => `<figure><a href="${escape(figure.src)}" target="_blank" rel="noopener" aria-label="Open full size: ${escape(figure.caption)}"><img src="${escape(figure.src)}" alt="${escape(figure.caption)}" loading="lazy"></a><figcaption>${escape(figure.caption)}</figcaption></figure>`).join('')}</div><p class="pp-figure-hint mono">SELECT A FIGURE TO OPEN IT FULL SIZE ↗</p></section>`;
+      return `<section class="pp-section reveal" id="${section.id}">${head}<div class="pp-figures">${project.figures.map(figure => `<figure><a href="${escape(figure.src)}" target="_blank" rel="noopener" aria-label="Open full size: ${escape(figure.caption)}"><img src="${escape(figure.src)}" alt="${escape(figure.caption)}" loading="lazy"></a><figcaption>${escape(figure.caption)}</figcaption></figure>`).join('')}</div><p class="pp-figure-hint mono">SELECT A FIGURE TO OPEN IT FULL SIZE ↗︎</p></section>`;
     }
     if (section.kind === 'video' && localVideo) {
       return `<section class="pp-section reveal" id="${section.id}">${head}<p>A screen recording of both programs: entering data with validation, then analysing it overall and by continent.</p><div class="pp-video" style="margin-top:22px"><video controls preload="metadata" playsinline ${project.videoPoster ? `poster="${escape(project.videoPoster)}"` : ''}><source src="${escape(localVideo)}" type="video/mp4">Your browser can't play this video.</video></div></section>`;
@@ -90,16 +90,16 @@
     if (section.kind === 'video') {
       const frame = videoId
         ? `<iframe src="https://www.youtube-nocookie.com/embed/${videoId}?rel=0" title="${escape(project.title)} video" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
-        : `<div class="pp-video-empty"><span class="play-ring" aria-hidden="true">▶</span><span class="mono">VIDEO WALKTHROUGH COMING SOON</span></div>`;
+        : `<div class="pp-video-empty"><span class="play-ring" aria-hidden="true">▶︎</span><span class="mono">VIDEO WALKTHROUGH COMING SOON</span></div>`;
       const intro = isFeatured ? 'I walk through the platform, the AI pipeline and the decisions behind it.' : 'Our recorded presentation of the deployment.';
-      const link = videoId ? `<a class="text-link" href="https://www.youtube.com/watch?v=${videoId}" target="_blank" rel="noopener">Watch on YouTube <span>↗</span></a>` : '';
+      const link = videoId ? `<a class="text-link" href="https://www.youtube.com/watch?v=${videoId}" target="_blank" rel="noopener">Watch on YouTube <span>↗︎</span></a>` : '';
       return `<section class="pp-section reveal" id="${section.id}">${head}<p>${intro}</p><div class="pp-video" style="margin-top:22px">${frame}</div>${link ? `<div style="margin-top:16px">${link}</div>` : ''}</section>`;
     }
     if (section.kind === 'source') {
       const many = repos.length > 1;
       return `<section class="pp-section reveal" id="${section.id}">${head}<div class="pp-repos">${repos.map(repo => {
         const name = repo.url.replace(/^https?:\/\/(www\.)?github\.com\//, '').replace(/\/$/, '');
-        return `<div class="pp-panel"><div class="gh-row"><span class="gh-icon">${githubIcon}</span><div><span class="mono">${escape(repo.label ? repo.label.toUpperCase() : 'GITHUB REPOSITORY')}</span><h3>${escape(name.split('/').pop().replace(/-+$/, '').replace(/-/g, ' '))}</h3></div></div><p>${many ? escape('github.com/' + name) : 'Browse the full source, commit history and documentation.'}</p><a class="pill-button outline-button" href="${escape(repo.url)}" target="_blank" rel="noopener noreferrer">View on GitHub <span>↗</span></a></div>`;
+        return `<div class="pp-panel"><div class="gh-row"><span class="gh-icon">${githubIcon}</span><div><span class="mono">${escape(repo.label ? repo.label.toUpperCase() : 'GITHUB REPOSITORY')}</span><h3>${escape(name.split('/').pop().replace(/-+$/, '').replace(/-/g, ' '))}</h3></div></div><p>${many ? escape('github.com/' + name) : 'Browse the full source, commit history and documentation.'}</p><a class="pill-button outline-button" href="${escape(repo.url)}" target="_blank" rel="noopener noreferrer">View on GitHub <span>↗︎</span></a></div>`;
       }).join('')}</div></section>`;
     }
     const body = (section.body || []).map(text => `<p>${escape(text)}</p>`).join('');
@@ -120,7 +120,7 @@
 
   main.innerHTML = `
     <section class="pp-hero" aria-labelledby="pp-title">
-      <div class="pp-kicker"><span class="mono"><a class="pp-back" href="index.html#work"><span aria-hidden="true">←</span> All projects</a></span><span class="mono">${escape(number)} · ${escape((project.labels || []).join(' / '))}</span></div>
+      <div class="pp-kicker"><span class="mono"><a class="pp-back" href="index.html#work"><span aria-hidden="true">←︎</span> All projects</a></span><span class="mono">${escape(number)} · ${escape((project.labels || []).join(' / '))}</span></div>
       ${title.replace('<h1 ', '<h1 id="pp-title" ')}
       <p class="pp-tagline">${escape(project.tagline || project.summary)}</p>
       <dl class="pp-meta">${meta.map(([label, value]) => `<div><dt>${label}</dt><dd>${escape(value)}</dd></div>`).join('')}</dl>
@@ -137,7 +137,7 @@
         ${sections.map(renderSection).join('')}
       </div>
     </div>
-    <nav class="pp-next" aria-label="Next project"><div><span class="mono">NEXT ${next === data.featured ? 'UP / FLAGSHIP' : 'PROJECT'}</span><a class="next-link" href="project.html?p=${encodeURIComponent(next.slug)}">${escape(next.title)} <span aria-hidden="true">↗</span></a></div><a class="text-link" href="index.html#work">Back to all projects <span>↙</span></a></nav>`;
+    <nav class="pp-next" aria-label="Next project"><div><span class="mono">NEXT ${next === data.featured ? 'UP / FLAGSHIP' : 'PROJECT'}</span><a class="next-link" href="project.html?p=${encodeURIComponent(next.slug)}">${escape(next.title)} <span aria-hidden="true">↗︎</span></a></div><a class="text-link" href="index.html#work">Back to all projects <span>↙︎</span></a></nav>`;
 
   window.ProjectArt.fit(main);
   /* Reveal, progress, table of contents */
